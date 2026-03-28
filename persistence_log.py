@@ -1,96 +1,96 @@
-# sistema de estado diario del equipo
+# team daily status system
 
 import os
 
-archivo = "database.txt"
+file_name = "database.txt"
 
 # -----------------------------
-# guardar blocker (append)
+# save blocker (append)
 # -----------------------------
-def guardar_blocker():
-    blocker = input("Escribe tu Daily Blocker: ")
+def save_blocker():
+    blocker = input("Enter your Daily Blocker: ")
 
-    with open(archivo, "a") as file:
+    with open(file_name, "a") as file:
         file.write(blocker + "\n")
 
-    print("Blocker guardado\n")
+    print("Blocker saved\n")
 
 
 # -----------------------------
-# mostrar blockers (read)
+# show blockers (read)
 # -----------------------------
-def mostrar_blockers():
+def show_blockers():
 
-    if os.path.exists(archivo):
+    if os.path.exists(file_name):
 
-        with open(archivo, "r") as file:
-            lineas = file.readlines()
+        with open(file_name, "r") as file:
+            lines = file.readlines()
 
-        if len(lineas) == 0:
-            print("No hay blockers guardados\n")
+        if len(lines) == 0:
+            print("No blockers saved\n")
         else:
-            print("\n--- LISTA DE BLOCKERS ---")
+            print("\n--- BLOCKERS LIST ---")
 
-            contador = 1
-            for linea in lineas:
-                print(contador, "-", linea.strip())
-                contador += 1
+            counter = 1
+            for line in lines:
+                print(counter, "-", line.strip())
+                counter += 1
 
             print()
 
     else:
-        print("El archivo no existe, primero guarda un blocker\n")
+        print("File does not exist, please save a blocker first\n")
 
 
 # -----------------------------
-# borrar archivo (overwrite)
+# delete file (overwrite)
 # -----------------------------
-def borrar_datos():
+def delete_data():
 
-    if os.path.exists(archivo):
+    if os.path.exists(file_name):
 
-        opcion = input("⚠️ Esto borrará todo. ¿Seguro? (si/no): ")
+        option = input("⚠️ This will delete everything. Are you sure? (yes/no): ")
 
-        if opcion == "si":
-            with open(archivo, "w") as file:
+        if option == "yes":
+            with open(file_name, "w") as file:
                 file.write("")
-            print("Datos eliminados\n")
+            print("Data deleted\n")
         else:
-            print("Operación cancelada\n")
+            print("Operation cancelled\n")
 
     else:
-        print("No hay archivo para borrar\n")
+        print("No file to delete\n")
 
 
 # -----------------------------
-# menú principal
+# main menu
 # -----------------------------
-opcion = ""
+option = ""
 
-while opcion != "4":
+while option != "4":
 
     print("----- TEAM DAILY STATUS -----")
-    print("1. Guardar blocker")
-    print("2. Mostrar blockers")
-    print("3. Borrar datos")
-    print("4. Salir")
+    print("1. Save blocker")
+    print("2. Show blockers")
+    print("3. Delete data")
+    print("4. Exit")
 
-    opcion = input("Elige una opción: ")
+    option = input("Choose an option: ")
 
-    if opcion == "1":
-        guardar_blocker()
+    if option == "1":
+        save_blocker()
 
-    elif opcion == "2":
-        mostrar_blockers()
+    elif option == "2":
+        show_blockers()
 
-    elif opcion == "3":
-        borrar_datos()
+    elif option == "3":
+        delete_data()
 
-    elif opcion == "4":
-        print("Saliendo del sistema...")
+    elif option == "4":
+        print("Exiting system...")
 
     else:
-        print("Opción inválida\n")
+        print("Invalid option\n")
 
 
 # -----------------------------
